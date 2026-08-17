@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Community</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 id="site-title">Global Community</h1>
+            <div class="lang-switch">
+                <button onclick="setLanguage('ko')">🇰🇷 KO</button>
+                <button onclick="setLanguage('en')">🇺🇸 EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2 id="intro-heading">Welcome to the Global Community!</h2>
+            <p id="intro-text">Connect and share ideas with people all around the world. Powered by GitHub.</p>
+        </section>
+
+        <!-- 커뮤니티 게시판 (Giscus / GitHub Discussions 연동 영역) -->
+        <section class="community-board">
+            <h3 id="board-heading">Community Discussions</h3>
+            <div id="giscus-container">
+                <!-- Giscus 스크립트 삽입 위치 (레포지토리 연동 후 발급받은 스크립트로 교체) -->
+                <script src="https://giscus.app/client.js"
+                        data-repo="YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
+                        data-repo-id="YOUR_REPO_ID"
+                        data-category="General"
+                        data-category-id="YOUR_CATEGORY_ID"
+                        data-mapping="pathname"
+                        data-strict="0"
+                        data-reactions-enabled="1"
+                        data-emit-metadata="0"
+                        data-input-position="bottom"
+                        data-theme="preferred_color_scheme"
+                        data-lang="en"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Global Community. Open Source under MIT License.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ko: {
+                title: "글로벌 커뮤니티",
+                heading: "글로벌 커뮤니티에 오신 것을 환영합니다!",
+                text: "전 세계 사람들과 자유롭게 소통하고 아이디어를 공유하세요. 깃허브 기반으로 안전하게 운영됩니다.",
+                boardHeading: "커뮤니티 토론장"
+            },
+            en: {
+                title: "Global Community",
+                heading: "Welcome to the Global Community!",
+                text: "Connect and share ideas with people all around the world. Powered by GitHub.",
+                boardHeading: "Community Discussions"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('site-title').innerText = translations[lang].title;
+            document.getElementById('intro-heading').innerText = translations[lang].heading;
+            document.getElementById('intro-text').innerText = translations[lang].text;
+            document.getElementById('board-heading').innerText = translations[lang].boardHeading;
+        }
+    </script>
+</body>
+</html>
