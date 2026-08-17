@@ -3,75 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Community</title>
+    <title>WOSAI - Global Community</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1 id="site-title">Global Community</h1>
-            <div class="lang-switch">
-                <button onclick="setLanguage('ko')">🇰🇷 KO</button>
-                <button onclick="setLanguage('en')">🇺🇸 EN</button>
+<body class="bg-[#0b0f17] text-slate-200 antialiased min-h-screen flex flex-col selection:bg-cyan-500 selection:text-white">
+
+    <!-- Glowing Background Blur -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-r from-cyan-500/20 via-indigo-500/20 to-purple-500/20 blur-[120px] pointer-events-none -z-10 rounded-full"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#0b0f17]/70 border-b border-slate-800/80 transition-all">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-black text-lg shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    W
+                </div>
+                <span class="font-extrabold text-xl tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
+                    WOSAI<span class="text-cyan-400">.SITE</span>
+                </span>
+            </a>
+
+            <!-- Nav Links & Controls -->
+            <div class="flex items-center gap-4">
+                <button onclick="switchTab('discussions')" class="nav-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 bg-slate-800/80 text-white border border-slate-700/50 hover:border-cyan-500/50">
+                    <i data-lucide="message-square" class="w-4 h-4 text-cyan-400"></i>
+                    <span>게시판</span>
+                </button>
+                <button onclick="switchTab('about')" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800/50">
+                    <i data-lucide="info" class="w-4 h-4"></i>
+                    <span>소개</span>
+                </button>
+
+                <div class="h-4 w-[1px] bg-slate-800 mx-1"></div>
+
+                <div class="flex bg-slate-900/80 p-1 rounded-xl border border-slate-800 text-xs font-semibold">
+                    <button onclick="setLanguage('ko')" id="btn-ko" class="px-2.5 py-1 rounded-lg bg-cyan-500 text-black font-bold transition-all">KO</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all">EN</button>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        <section class="intro">
-            <h2 id="intro-heading">Welcome to the Global Community!</h2>
-            <p id="intro-text">Connect and share ideas with people all around the world. Powered by GitHub.</p>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-10 flex-grow w-full">
+        <!-- Hero Section -->
+        <section class="mb-12 text-center relative overflow-hidden p-8 rounded-3xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-md shadow-2xl glass-card">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-4 animate-bounce-subtle">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <span id="hero-badge">글로벌 오픈 커뮤니티 플랫폼</span>
+            </div>
+            <h1 id="hero-title" class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
+                자유롭게 의견을 나누고 <br class="hidden md:block"><span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400">새로운 아이디어</span>를 연결하세요.
+            </h1>
+            <p id="hero-desc" class="text-slate-400 max-w-xl mx-auto text-sm md:text-base mb-6">
+                깃허브 생태계 기반으로 운영되는 서버리스 글로벌 커뮤니티 WOSAI입니다. 로그인 후 바로 토론에 참여해 보세요.
+            </p>
         </section>
 
-        <!-- 커뮤니티 게시판 (Giscus / GitHub Discussions 연동 영역) -->
-        <section class="community-board">
-            <h3 id="board-heading">Community Discussions</h3>
-            <div id="giscus-container">
-                <!-- Giscus 스크립트 삽입 위치 (레포지토리 연동 후 발급받은 스크립트로 교체) -->
-                <script src="https://giscus.app/client.js"
-                        data-repo="YOUR_GITHUB_USERNAME/YOUR_REPO_NAME"
-                        data-repo-id="YOUR_REPO_ID"
-                        data-category="General"
-                        data-category-id="YOUR_CATEGORY_ID"
-                        data-mapping="pathname"
-                        data-strict="0"
-                        data-reactions-enabled="1"
-                        data-emit-metadata="0"
-                        data-input-position="bottom"
-                        data-theme="preferred_color_scheme"
-                        data-lang="en"
-                        crossorigin="anonymous"
-                        async>
-                </script>
+        <!-- Community Grid Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Main Content Area (Discussions Feed) -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- Category Filter Header -->
+                <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-cyan-400"></i>
+                        <span id="section-title">최신 토론 목록</span>
+                    </h2>
+                    <a href="https://github.com/jkg20251105-tech/Japs/discussions" target="_blank" class="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold group">
+                        깃허브에서 직접 작성 <i data-lucide="external-link" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Live Discussion/Giscus Box -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm shadow-xl min-h-[400px]">
+                    <!-- Giscus 댓글/포럼 시스템 영역 -->
+                    <div id="giscus-container">
+                        <script src="https://giscus.app/client.js"
+                                data-repo="jkg20251105-tech/Japs"
+                                data-repo-id="R_kgDORX_xxx" 
+                                data-category="General"
+                                data-category-id="DIC_kwDORX_xxx"
+                                data-mapping="pathname"
+                                data-strict="0"
+                                data-reactions-enabled="1"
+                                data-emit-metadata="0"
+                                data-input-position="top"
+                                data-theme="dark_dimmed"
+                                data-lang="ko"
+                                crossorigin="anonymous"
+                                async>
+                        </script>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <!-- Sidebar -->
+            <aside class="space-y-6">
+                <!-- Community Info Card -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm shadow-xl">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400"></i>
+                        <span id="card-rules-title">커뮤니티 가이드</span>
+                    </h3>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex gap-2">
+                            <span class="text-cyan-400 font-bold">•</span>
+                            <span>서로 존중하며 매너 있는 대화를 나눠주세요.</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-cyan-400 font-bold">•</span>
+                            <span>깃허브 계정만 있으면 누구나 글 작성 및 댓글참여가 가능합니다.</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-cyan-400 font-bold">•</span>
+                            <span>스팸성 광고 및 타인 비방 글은 예고 없이 삭제될 수 있습니다.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Developer Stats -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm shadow-xl relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl"></div>
+                    <h3 class="font-bold text-white mb-3 flex items-center gap-2">
+                        <i data-lucide="code-2" class="w-5 h-5 text-indigo-400"></i>
+                        <span>공동 개발 팀</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mb-4">전 세계 사용자를 위한 심플 커뮤니티 프로젝트</p>
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-cyan-400">Dev</div>
+                        <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-indigo-400">Dev</div>
+                        <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-purple-400">Dev</div>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Global Community. Open Source under MIT License.</p>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-[#0b0f17]/90 py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center text-xs text-slate-500">
+            <p>&copy; 2026 WOSAI.SITE. All rights reserved. Open source under MIT License.</p>
+        </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
+        lucide.createIcons();
+
         const translations = {
             ko: {
-                title: "글로벌 커뮤니티",
-                heading: "글로벌 커뮤니티에 오신 것을 환영합니다!",
-                text: "전 세계 사람들과 자유롭게 소통하고 아이디어를 공유하세요. 깃허브 기반으로 안전하게 운영됩니다.",
-                boardHeading: "커뮤니티 토론장"
+                badge: "글로벌 오픈 커뮤니티 플랫폼",
+                heroTitle: "자유롭게 의견을 나누고 <br class='hidden md:block'><span class='bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400'>새로운 아이디어</span>를 연결하세요.",
+                heroDesc: "깃허브 생태계 기반으로 운영되는 서버리스 글로벌 커뮤니티 WOSAI입니다. 로그인 후 바로 토론에 참여해 보세요.",
+                sectionTitle: "최신 토론 목록",
+                rulesTitle: "커뮤니티 가이드"
             },
             en: {
-                title: "Global Community",
-                heading: "Welcome to the Global Community!",
-                text: "Connect and share ideas with people all around the world. Powered by GitHub.",
-                boardHeading: "Community Discussions"
+                badge: "Global Open Community Platform",
+                heroTitle: "Share your thoughts and <br class='hidden md:block'><span class='bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400'>Connect New Ideas</span>.",
+                heroDesc: "Welcome to WOSAI, a serverless global community powered by the GitHub ecosystem. Join discussions instantly.",
+                sectionTitle: "Latest Discussions",
+                rulesTitle: "Community Guidelines"
             }
         };
 
         function setLanguage(lang) {
-            document.getElementById('site-title').innerText = translations[lang].title;
-            document.getElementById('intro-heading').innerText = translations[lang].heading;
-            document.getElementById('intro-text').innerText = translations[lang].text;
-            document.getElementById('board-heading').innerText = translations[lang].boardHeading;
+            document.getElementById('hero-badge').innerText = translations[lang].badge;
+            document.getElementById('hero-title').innerHTML = translations[lang].heroTitle;
+            document.getElementById('hero-desc').innerText = translations[lang].heroDesc;
+            document.getElementById('section-title').innerText = translations[lang].sectionTitle;
+            document.getElementById('card-rules-title').innerText = translations[lang].rulesTitle;
+
+            const btnKo = document.getElementById('btn-ko');
+            const btnEn = document.getElementById('btn-en');
+            if (lang === 'ko') {
+                btnKo.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-black font-bold transition-all";
+                btnEn.className = "px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all";
+            } else {
+                btnEn.className = "px-2.5 py-1 rounded-lg bg-cyan-500 text-black font-bold transition-all";
+                btnKo.className = "px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition-all";
+            }
         }
     </script>
 </body>
